@@ -1,6 +1,10 @@
-MyContext:
+﻿MyContext:
 
-Clinical Records are generated throughout a person’s life relating to their points of care, interventions and
+Aim: Product allows the granular control of a patient record to be management by the patient themselves via interaction
+with a distributed ledger. The patient can trade or auction their medical record based on bids from 3rd party
+pharmaceutical or medical researchers.
+
+Description: Clinical Records are generated throughout a person’s life relating to their points of care, interventions and
 treatments as and when they need them. These records hold valuable details of a private and confidential nature.
 The sharing of this information can be difficult to monitor and in clinical scenarios could lead to a compromise of
 data security.
