@@ -11,7 +11,8 @@ data security.
 The ability to “own” and access these details would be a paradigm shift in the management of Clinical detail. The
 added capability to share and moderate access would significantly add to the value of this type of information. The
 use of Blockchain encryption in the securing and sharing of these records is a relatively new approach to how data is
-stored, activated and permissible structures around its’ use. Blockchain opens up a whole new economy for the
+stored, activated and permissible structures around its’ use. 
+Blockchain opens up a whole new economy for the
 advanced use of these details for research and development, as well as advancing the immediacy of its availability.
 Use of Blockchain and “zero knowledge” data access, as well as distributed ledgers will allow for the building of an
 advanced identity management platform where Patient’s (Data Owners), Institutions, Clinical and Support staff will
@@ -21,4 +22,4 @@ MyCONTEXT Cancer Record intends to leverage the power of Decentralised Ledger Te
 increased availability, governance and efficient access to a Patient’s record across the spectrum of Cancer care
 interventions. This will create new efficiencies for patients, Cancer Services and others in the delivery of health
 interventions by reducing the time and effort taken to achieve access to timely, and complete patient records and
-collaborating practitioners
+collaborating practitioners.
