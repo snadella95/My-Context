@@ -1,25 +1,68 @@
-﻿MyContext:
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Aim: Product allows the granular control of a patient record to be management by the patient themselves via interaction
-with a distributed ledger. The patient can trade or auction their medical record based on bids from 3rd party
-pharmaceutical or medical researchers.
+## Available Scripts
 
-Description: Clinical Records are generated throughout a person’s life relating to their points of care, interventions and
-treatments as and when they need them. These records hold valuable details of a private and confidential nature.
-The sharing of this information can be difficult to monitor and in clinical scenarios could lead to a compromise of
-data security.
-The ability to “own” and access these details would be a paradigm shift in the management of Clinical detail. The
-added capability to share and moderate access would significantly add to the value of this type of information. The
-use of Blockchain encryption in the securing and sharing of these records is a relatively new approach to how data is
-stored, activated and permissible structures around its’ use. 
-Blockchain opens up a whole new economy for the
-advanced use of these details for research and development, as well as advancing the immediacy of its availability.
-Use of Blockchain and “zero knowledge” data access, as well as distributed ledgers will allow for the building of an
-advanced identity management platform where Patient’s (Data Owners), Institutions, Clinical and Support staff will
-be registered. These users can “share” access to records and responsibility for the input details. This will allow the
-warranty and trust for access and input trails as well as provenance of the details to be validated forward.
-MyCONTEXT Cancer Record intends to leverage the power of Decentralised Ledger Technology (DLT) to offer
-increased availability, governance and efficient access to a Patient’s record across the spectrum of Cancer care
-interventions. This will create new efficiencies for patients, Cancer Services and others in the delivery of health
-interventions by reducing the time and effort taken to achieve access to timely, and complete patient records and
-collaborating practitioners.
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+
+### Analyzing the Bundle Size
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+
+### Making a Progressive Web App
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+
+### Advanced Configuration
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+
+### Deployment
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+
+### `npm run build` fails to minify
+
+This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
