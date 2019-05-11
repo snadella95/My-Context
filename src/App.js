@@ -1,14 +1,33 @@
 import React, { Component } from 'react';
 import './App.css';
+import { createMuiTheme, MuiThemeProvider } from '@material-ui/core';
+import Home from './components/Home.js';
+
+
 
 class App extends Component {
   render() {
+
+    const THEME = createMuiTheme({
+      typography: {
+        fontFamily: 'eina-semi-bold'
+      },
+      palette: {
+        primary: {
+          main: '#3880ff'
+        },
+        secondary: {
+          main: '#474f5a'
+        }
+      }
+    })
+
     return (
-      <div className="App">
-        <div style={{ "padding": "300px" }}>
-          <p style={{ "fontSize": "24px", "lineHeight": "30px;", "letterSpacing": "-0.4px", "fontWeight": "bold" }}>Log in into App</p>
+      <MuiThemeProvider theme={THEME}>
+        <div className="App">
+          <Home />
         </div>
-      </div>
+      </MuiThemeProvider >
     );
   }
 }
