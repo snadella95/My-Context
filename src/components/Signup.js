@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { TextField, Button, FormControl, InputLabel, OutlinedInput, Select, MenuItem } from '@material-ui/core';
+import { TextField, Button, FormControl, InputLabel, OutlinedInput, Select, MenuItem, LinearProgress } from '@material-ui/core';
 import '../App.css';
 import ReactDOM from 'react-dom';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import api from '../api/mongoService';
+
 class Signup extends Component {
 
     constructor(props) {
@@ -14,37 +15,49 @@ class Signup extends Component {
             username: '',
             email: '',
             password: '',
-            password2: ''
-        }
+            password2: '',
+            errors: '',
+            redirect: false,
+            loading: false
+
+        };
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit() {
+    handleSubmit(e) {
         const user = {
             role: this.state.role,
             username: this.state.username,
             email: this.state.email,
             password: this.state.password,
             password2: this.state.password2
-        }
-
-        console.log("Before Sending, User Object : " + user.role + user.username + user.email + user.password + user.password2);
-
-        api.register_user(user, function (err, payload) {
-            if (err) {
+        };
+        this.setState({ loading: false });
+        api.register_user(user)
+            .then((response) => {
+                console.log(response);
+                if (response.success) {
+                    this.setState({ loading: true });
+                    alert("Registered successfully");
+                    this.setState({ redirect: true })
+                }
+                else {
+                    this.setState({ errors: response.message });
+                }
+            })
+            .catch((err) => {
                 console.log(err);
-            }
-            else {
-                console.log(payload);
-            }
-        });
+            });
     }
 
     componentDidMount() {
-        this.setState({
-            labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
-        });
+        if (ReactDOM.findDOMNode(this.InputLabelRef) !== null) {
+            this.setState({
+                labelWidth: ReactDOM.findDOMNode(this.InputLabelRef).offsetWidth,
+            });
+        }
+        this.setState({ loading: true });
     }
 
     handleInputChange(event) {
@@ -55,13 +68,25 @@ class Signup extends Component {
     };
 
     render() {
+
+        if (this.state.redirect) {
+            return (<Redirect to="/" />);
+        }
+
+        if (!this.state.loading) {
+            return (
+                <LinearProgress color="primary" />
+            )
+        }
+
         return (
             <div className="login-padding">
                 <div className="login-div">
                     <div className="login-center-content">
                         <p style={{
-                            "fontSize": "24px", "lineHeight": "30px;", "letterSpacing": "-0.4px", "fontWeight": "bold",
+                            "fontSize": "24px", "lineHeight": "30px", "letterSpacing": "-0.4px", "fontWeight": "bold",
                         }}>Create an account for <span style={{ "fontSize": "15px" }}>{this.state.role}</span></p>
+                        <p style={{ "fontSize": "15px", "fontStyle": "bold" }}>{this.state.errors}</p>
                         <div className="login-textfield">
                             <div>
                                 <FormControl variant="outlined" fullWidth>
@@ -148,10 +173,10 @@ class Signup extends Component {
                             <span style={{ "fontStyle": "bold", "fontSize": "13px" }}>Create Account</span></Button>
                     </div>
                 </div>
-                <div class="signup-footer">Already have an account?
+                <div className="signup-footer">Already have an account?
                 <Link to="/" style={{ "textDecoration": "none" }}>
                         <Button
-                            variant="raised"
+                            variant="contained"
                             size="small"
                             color="primary"
                             style={{ "marginLeft": "10px" }}>

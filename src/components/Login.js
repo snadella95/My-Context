@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import "../App.css";
-import { Link } from 'react-router-dom';
-import { TextField, Typography, Button } from '@material-ui/core';
-import api from '../api/mongoService.js';
-
+import { Link, Redirect } from 'react-router-dom';
+import { TextField, Typography, Button, Card } from '@material-ui/core';
+import api from '../api/mongoService';
+import Axios from 'axios';
 
 class Login extends Component {
     constructor(props) {
@@ -12,7 +12,9 @@ class Login extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
             email: "",
-            pwd: ""
+            pwd: "",
+            redirect: false,
+            errors: ''
         }
     }
 
@@ -24,30 +26,56 @@ class Login extends Component {
 
     }
 
-    handleSubmit(e) {
-        const login_details = {
-            email: this.state.email,
-            password: this.state.pwd
-        }
-        api.login_request(login_details, function (err, json) {
-            if (err) {
-                console.log(err);
-            }
-            else {
-                console.log(json);
-            }
-        })
+    componentDidMount() {
+        // console.log("I am re rendering because of the change");
     }
 
-    render() {
-        return (
+    handleSubmit(event) {
 
+        if (this.state.email && this.state.pwd) {
+
+            const login_details = {
+                email: this.state.email,
+                password: this.state.pwd
+            }
+
+            api.login_request(login_details)
+                .then((response) => {
+                    if (response.success && response.token) {
+                        sessionStorage.setItem('jwt', response.token);
+                        this.setState({ redirect: true })
+                    }
+                    else {
+                        this.setState({ errors: response.message });
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                })
+        }
+
+        else {
+            this.setState({ errors: "Please fill all the fields" });
+            console.log("came here");
+        }
+
+    }
+
+
+    render() {
+
+        if (this.state.redirect) {
+            return (<Redirect to="/dashboard" />);
+        }
+
+        return (
             <div className="login-padding">
                 <div className="login-div">
                     <div className="login-center-content">
                         <p style={{
                             "fontSize": "24px", "lineHeight": "30px", "letterSpacing": "-0.4px", "fontWeight": "bold",
                         }}>Log in into my<span style={{ "fontStyle": "italic", "fontFamily": "eina-bold-italic" }}>context</span></p>
+                        <p style={{ "fontSize": "15px", "fontStyle": "bold" }}>{this.state.errors}</p>
                         <div className="login-textfield">
                             <TextField
                                 id="outlined-email-input"
@@ -84,13 +112,11 @@ class Login extends Component {
                             <span style={{ "fontStyle": "bold", "fontSize": "13px" }}>Log In</span>
                         </Button>
                         <div className="login-placeholder">Don't have an account?
-                                <span style={{ "color": "#3880ff" }}>
-                                <Link to="/signup" style={{ "textDecoration": "none", "marginLeft": "5px" }} >Sign up</Link></span>
+                                <Link to="/signup" style={{ "textDecoration": "none", "marginLeft": "5px", "color": "#3880ff", "fontStyle": "bold" }} >Sign up</Link>
                         </div>
                     </div>
                 </div>
             </div >
-
         )
     }
 }
