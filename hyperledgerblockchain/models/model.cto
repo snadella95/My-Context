@@ -1,0 +1,146 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+ 
+namespace org.example.patientdata
+ 
+enum Status{
+  o Active
+  o InActive
+}
+ 
+enum Gender{
+  o Male
+  o Female
+}
+ 
+participant Patient identified by email{
+  o String email
+  o String firstName default = ""
+  o String lastName default = ""
+  o String Phone default = ""
+  o String Address default = ""
+  o String DOB default = ""
+  o Status Status 
+  o Gender Gender default = ""
+}
+
+participant Doctor identified by email{
+
+  o String email
+  o String firstName default = ""
+  o String lastName default = ""
+  o String Phone default = ""
+  o Gender Gender default = ""
+  
+}
+  
+participant Labs identified by email {
+  
+  o String email
+  o String labName
+  o String status
+  
+}
+
+concept Vitals {
+
+  o String GeneralAppearance default = "denies fatigue, malaise, fever, weight loss"
+  o String Height
+  o String Weight
+  o String Temperature
+  o String Rythm
+  o String BP
+  o String Eyes default = "denies blurring, diplopia, irritation, discharge"
+  o String EarNoseThroat default = "denies ear pain or discharge, nasal obstruction or discharge, sore throat"
+  o String CardioVascular default = "denies chest pain, palpitations, paroxysmal nocturnal dyspnea, orthopnea, edema"
+  o String Respiratory default = "denies coughing, wheezing, dyspnea, hemoptysis"
+  o String Gastrointestinal default = "denies abdominal pain, dysphagia, nausea, vomiting, diarrhea, constipation"
+  o String Genitourinary default = "denies hematuria, frequency, urgency, dysuria, discharge, impotence, incontinence"
+  o String MusculoSkeletal default = "denies back pain, joint swelling, joint stiffness, joint pain"
+  o String Skin default = "denies rashes, itching, lumps, sores, lesions, color change"
+  o String NeuroLogic default = "denies syncope, seizures, transient paralysis, weakness, paresthesias"
+  o String Pyschiatric default = "denies depression, anxiety, mental disturbance, difficulty sleeping, suicidal ideation"
+  o String Endocrine default = "denies polyuria, polydipsia, polyphagia, weight change, heat or cold intolerance"
+  o String problemsVital default =""
+  
+
+}
+
+asset MedicalRecord identified by RecordsId{
+  o String RecordsId
+  --> Patient Owner
+  --> Doctor doctors optional
+  --> Labs[] labs optional
+  o Vitals vitals 
+  o DateTime date 
+  o String[] Problems 
+  o String[] Medications 
+  o String[] Allergies 
+}
+ 
+transaction PatientProblems{
+ 
+  --> MedicalRecord asset
+  o String[] previousProblems optional
+  o String[] problem
+ 
+}
+ 
+transaction MedicationsChange{
+ 
+  --> MedicalRecord asset
+  o String[] previousMedications optional
+  o String[] presentMedications
+ 
+}
+ 
+transaction AllergiesChange{
+ 
+  --> MedicalRecord asset
+  o String[] previousAllergies optional
+  o String[] presentAllergies
+ 
+}
+  
+transaction VitalsChange{
+  
+  --> MedicalRecord asset
+  o Vitals previousVitals optional
+  o Vitals presentVitals
+  
+}
+ 
+transaction LabsChange{
+  --> MedicalRecord asset
+  o Labs[] previousLabs optional
+  o Labs[] presentLabs 
+}
+  
+transaction DoctorsChange{
+ --> MedicalRecord asset
+ --> Doctor presentDoctors
+}
+  
+transaction createPatient{
+ o Patient patient
+}
+
+transaction createMedicalRecord{
+ o MedicalRecord record
+}
+  
+transaction createDoctor{
+o Doctor doctor
+}
+  

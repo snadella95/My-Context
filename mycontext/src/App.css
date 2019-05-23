@@ -1,0 +1,76 @@
+.App {
+  text-align: center;
+}
+
+.login-padding {
+  max-width: 300px;
+  min-height: 540px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+}
+
+.login-div{
+  display: flex;
+  flex-direction: column;
+  padding: 38px 0px;
+  padding-top: 38px;
+  padding-right: 0px;
+  padding-bottom: 38px;
+  padding-left: 0px;
+}
+
+.login-centre-content{
+  margin: auto 0px;
+  margin-top: auto;
+  margin-right: 0px;
+  margin-bottom: auto;
+  margin-left: 0px;
+}
+
+.login-textfield{
+  display: block;
+  text-align: left;
+}
+
+.login-forgot-password{
+  text-align: right;
+  font-size: 15px;
+  font-style: bold;
+}
+
+.login-forgot-password:hover{
+  color:#3880ff;
+}
+
+.login-placeholder{
+  font-size: 13px;
+  background-color: rgb(250, 251, 252);
+  margin-bottom: 16px;
+  margin-top: 16px;
+  text-align: center;
+  font-size: 13px;
+  padding: 12px 8px 10px;
+  border-radius: 6px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(232, 235, 241);
+  border-image: initial;
+}
+
+.signup-footer{
+  text-align: center;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  color: rgb(59, 66, 77);
+  font-size: 13px;
+  flex: 0 0 68px;
+}
